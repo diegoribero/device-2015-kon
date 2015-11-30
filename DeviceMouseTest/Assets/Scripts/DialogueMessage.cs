@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System.Text;
+using System.IO;  
 
 public class DialogueMessage : MonoBehaviour {
 
@@ -46,6 +48,29 @@ public class DialogueMessage : MonoBehaviour {
 	//conversation.Add(new string("Who are you?"));
 
 	// Use this for initialization
+	
+	void loadFromFileToConversation(string filePath){
+		try {
+			string line;
+			StreamReader theReader = new StreamReader(fileName, Encoding.Default);
+			using (theReader) {				
+				do {
+					line = theReader.ReadLine();
+					if (line != null) {
+						string[] entries = line.Split(',');
+						if (entries.Length > 0)
+							DoStuff(entries);
+					}
+				}
+				while (line != null);    
+				theReader.Close();
+				return true;
+			}
+		} catch (Exception e) {
+			Console.WriteLine("{0}\n", e.Message);
+			return false;
+		}
+	}
 
 	public void defineDialogueBoxPosition(){
 		boxWidth = Screen.width - (boxHorizontalPadding*2);
@@ -205,7 +230,30 @@ public class DialogueMessage : MonoBehaviour {
 		
 	}
 
-
+	public void showMessage(bool dialogueAtTop, bool avatarLeft, string name = "", string message, Texture2D backgroundTexture){
+		if(name == ""){
+			nameBoxEnabled = false;
+		} else {
+			nameBoxEnabled = true;
+		}
+		avatarBoxEnabled = false;
+		avatarBoxRight = !avatarLeft;
+		boxTop = dialogueAtTop;
+		boxTexture = backgroundTexture;
+	}
+	
+	public void showMessage(bool dialogueAtTop, bool avatarLeft, string name = "", string message, Texture2D backgroundTexture, Texture2D avatarTexture, int avatarPadding = 20){
+		if(name == ""){
+			nameBoxEnabled = false;
+		}
+		avatarBoxEnabled = true;
+		avatarBoxVerticalPadding = avatarPadding;
+		avatarBoxHorizontalPadding = avatarPadding;
+		avatarBoxRight = !avatarLeft;
+		boxTop = dialogueAtTop;
+		boxTexture = backgroundTexture;
+		avatarBoxTexture = avatarTexture;
+	}
 
 	public void showDemoDialogue(){
 		//GUI.BeginGroup(new Rect());
