@@ -53,6 +53,7 @@
      <Compile Include="Assets\Editor\ToSaveEditor\VRPNAnalogSaveEditor.cs" />
      <Compile Include="Assets\Editor\ToSaveEditor\VRPNButtonSaveEditor.cs" />
      <Compile Include="Assets\Editor\ToSaveEditor\VRPNTrackerSaveEditor.cs" />
+     <None Include="Assets\SampleScript.txt" />
      <None Include="Assets\VRPNFiles\DoNotDelete.txt" />
      <None Include="Assets\Resources\vrpn.cfg.txt" />
  <Reference Include="UnityEditor.Advertisements">

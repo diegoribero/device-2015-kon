@@ -3,11 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 using System.IO;  
+using System;
+
+using SimpleJSON;
 
 public class DialogueMessage : MonoBehaviour {
 
+	bool activeMessage = false;
 	string dialogue = "";
-	int currentSentence = 0;
+	int currentSentence = -1;
 	public List<string> conversation = new List<string>();
 
 	//Dialogue box vars
@@ -41,35 +45,119 @@ public class DialogueMessage : MonoBehaviour {
 	int messageBoxWidth, messageBoxHeight, messageBoxX, messageBoxY;
 	Rect messageBoxRectangle;
 	
+	string currentMessage = "";
+	string currentName = "";
 
 	public Texture2D boxTexture;
 	public Texture2D avatarBoxTexture;
 
-	//conversation.Add(new string("Who are you?"));
+	public List<JSONNode> jsonList = new List<JSONNode>();
 
-	// Use this for initialization
-	
-	void loadFromFileToConversation(string filePath){
+
+	bool loadConversationFromFile(string filePath){
+		jsonList.Clear();
 		try {
 			string line;
-			StreamReader theReader = new StreamReader(fileName, Encoding.Default);
-			using (theReader) {				
+			StreamReader streamReader = new StreamReader(filePath, Encoding.Default);
+			using (streamReader) {				
 				do {
-					line = theReader.ReadLine();
+					line = streamReader.ReadLine();
 					if (line != null) {
-						string[] entries = line.Split(',');
-						if (entries.Length > 0)
-							DoStuff(entries);
+						processJSONLine(line);
 					}
 				}
-				while (line != null);    
-				theReader.Close();
-				return true;
+				while (line != null);
+				streamReader.Close();
 			}
 		} catch (Exception e) {
-			Console.WriteLine("{0}\n", e.Message);
+			Debug.Log(e.Message);
 			return false;
 		}
+
+		return true;
+	}
+
+	void processJSONLine(string JSONLine){
+		jsonList.Add(JSON.Parse(JSONLine));
+	}
+
+	bool getNextMessage(){
+		Debug.Log("JSON count = " + jsonList.Count);
+		currentSentence++;
+		if(currentSentence+1 > jsonList.Count){ //Finished the message script
+			jsonList.Clear();
+			currentSentence = -1;
+			return false;
+		} else {
+			if(jsonList.Count > 0){
+				JSONNode tempJSON;
+				string name = "";
+				string message = "";
+				bool left = true;
+				bool top = false; 
+				int avatar = -1;
+				tempJSON = jsonList[currentSentence];
+				if (tempJSON["name"] != null){
+					name = tempJSON["name"].Value;
+				}
+				if (tempJSON["message"] != null){
+					message = tempJSON["message"].Value;
+				}
+				if (tempJSON["top"] != null){
+					top = tempJSON["top"].AsBool;
+				}
+				if (tempJSON["left"] != null){
+					left = tempJSON["left"].AsBool;
+				}
+				if (tempJSON["avatar"] != null){
+					avatar = tempJSON["avatar"].AsInt;
+				}
+
+				Debug.Log("Left is " + (left? "true" : "false"));
+
+				if(avatar == 0){
+					showMessage(top, left, message, boxTexture, avatarBoxTexture, 20, name);
+				} else {
+					showMessage(top, left, message, boxTexture, name);
+				}
+				/*for(int i=0 ; i < jsonList.Count-1 ; i++){
+					tempJSON = jsonList[i];
+					if (tempJSON["name"] != null){
+						name = tempJSON["name"].Value;
+					}
+					if (tempJSON["message"] != null){
+						message = tempJSON["message"].Value;
+					}
+					if (tempJSON["top"] != null){
+						top = tempJSON["top"].AsBool;
+					}
+					if (tempJSON["left"] != null){
+						left = tempJSON["left"].AsBool;
+					}
+					if (tempJSON["avatar"] != null){
+						avatar = tempJSON["avatar"].AsInt;
+					}
+					
+					if(avatar == 0){
+						showMessage(top, left, message, boxTexture, avatarBoxTexture, 20, name);
+					} else {
+						showMessage(top, left, message, boxTexture, name);
+					}
+					
+					Debug.Log("Message: " + message);
+					avatar = -1;
+					top = false;
+					left = false;
+					name = "";
+					message = "";
+				}*/
+				
+			}
+
+			return true;
+		}
+
+
 	}
 
 	public void defineDialogueBoxPosition(){
@@ -91,8 +179,12 @@ public class DialogueMessage : MonoBehaviour {
 	public void defineNameBoxPosition(){
 
 		if(avatarBoxEnabled){
+			if(avatarBoxRight){
+				nameBoxX = boxX + nameBoxHorizontalPadding;
+			} else {
+				nameBoxX = avatarBoxX + avatarBoxWidth + avatarBoxHorizontalPadding + nameBoxHorizontalPadding;
+			}
 			nameBoxWidth = boxWidth - (avatarBoxHorizontalPadding*2) - avatarBoxWidth - (nameBoxHorizontalPadding*2);
-			nameBoxX = avatarBoxX + avatarBoxWidth + avatarBoxHorizontalPadding + nameBoxHorizontalPadding;
 		} else {
 			nameBoxWidth = boxWidth - (nameBoxHorizontalPadding*2);
 			nameBoxX = boxX + nameBoxHorizontalPadding;
@@ -106,8 +198,12 @@ public class DialogueMessage : MonoBehaviour {
 	public void defineMessageBoxPosition(){
 		
 		if(avatarBoxEnabled){
+			if(avatarBoxRight){
+				messageBoxX = boxX + messageBoxHorizontalPadding;
+			} else {
+				messageBoxX = avatarBoxX + avatarBoxWidth + avatarBoxHorizontalPadding + messageBoxHorizontalPadding;
+			}
 			messageBoxWidth = boxWidth - (avatarBoxHorizontalPadding*2) - avatarBoxWidth - (messageBoxHorizontalPadding*2);
-			messageBoxX = avatarBoxX + avatarBoxWidth + avatarBoxHorizontalPadding + messageBoxHorizontalPadding;
 		} else {
 			messageBoxWidth = boxWidth - (messageBoxHorizontalPadding*2);
 			messageBoxX = boxX + messageBoxHorizontalPadding;
@@ -127,45 +223,53 @@ public class DialogueMessage : MonoBehaviour {
 
 	void Start () {
 
-		defineDialogueBoxPosition();
-		if(avatarBoxEnabled) defineAvatarBoxPosition();
-		if(nameBoxEnabled) defineNameBoxPosition();
-		defineMessageBoxPosition();
-
-		Debug.Log("X:" + boxX + " Y: " + boxY + " Width: " + boxWidth + " Height: " + boxHeight);
+		/*Debug.Log("X:" + boxX + " Y: " + boxY + " Width: " + boxWidth + " Height: " + boxHeight);
 		Debug.Log("AX:" + avatarBoxX + " AY: " + avatarBoxY + " AWidth: " + avatarBoxWidth + " AHeight: " + avatarBoxHeight);
 		Debug.Log("ABHP: " + avatarBoxHorizontalPadding + " ABVP: " + avatarBoxVerticalPadding);
 		Debug.Log("SW: " + Screen.width + " SH: " + Screen.height);
-		Debug.Log("(" + Screen.height + "*" + boxHeightProportion + ") - (" + boxVerticalPadding*2+ ");");
+		Debug.Log("(" + Screen.height + "*" + boxHeightProportion + ") - (" + boxVerticalPadding*2+ ");");*/
 
 
 
-		conversation.Add("Who are you?");
-		conversation.Add("Where did you find it?");
-		conversation.Add("I must have it!");
-		conversation.Add("How much!?");
+		//conversation.Add("Who are you?");
+		//conversation.Add("Where did you find it?");
+		//conversation.Add("I must have it!");
+		//conversation.Add("How much!?");
+
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		//Debug.Log("currentSentence:" + currentSentence + "/" + (conversation.Count-1));
-		dialogue = conversation[currentSentence];
 		if(Input.GetMouseButtonDown(0)){ //Next message || end conversation
-			onNextButton();
+			if(!activeMessage){
+				if(loadConversationFromFile("Assets/SampleScript.txt")){
+					onNextButton();
+					activeMessage = true;
+				}
+			} else {
+				onNextButton();
+			}
 		} else if (Input.GetMouseButtonDown(1)){ //Skip to last message || end conversation
 			onSkipButton();
 		}
 	}
 
 	void OnGUI() {
-		drawBox(boxRectangle, new Color(20, 20, 120, 120), boxTexture);
-		if(avatarBoxEnabled) drawBox(avatarBoxRectangle, new Color(20, 120, 20, 120), avatarBoxTexture);
-		if(nameBoxEnabled) drawLabel(nameBoxRectangle, new Color(120, 120, 20), "Diana");
-		drawLabel(messageBoxRectangle, new Color(20, 120, 120), "Test Text In a really extended version to try and wrap around the container, this will go around and try to look like a sample of the conversation dialogue used in an RPG game");
-
-		GUI.Button( new Rect(20, 20, 400, 20), dialogue);
+		if(activeMessage){
+			drawBox(boxRectangle, new Color(20, 20, 120, 120), boxTexture);
+			if(avatarBoxEnabled) drawBox(avatarBoxRectangle, new Color(20, 120, 20, 120), avatarBoxTexture);
+			if(nameBoxEnabled) drawLabel(nameBoxRectangle, new Color(120, 120, 20), currentName);
+			drawLabel(messageBoxRectangle, new Color(20, 120, 120), currentMessage);
+		}
 	}
 
+
+	public void drawLabel(Rect position, Color color, string content){
+		Color oldColor = GUI.color;
+		GUI.color = color;
+		GUI.Label(position, content);
+		GUI.color = oldColor;
+	}
 
 	public void drawBox(Rect position, Color color) {
 		GUIStyle boxStyle = new GUIStyle();
@@ -188,26 +292,12 @@ public class DialogueMessage : MonoBehaviour {
 		GUI.backgroundColor = oldBackgroundColor;
 	}
 
-	public void drawLabel(Rect position, Color color, string content){
-		//GUIStyle labelStyle = new GUIStyle();
-		//labelStyle.fixedWidth = position.width;
-		//labelStyle.fixedHeight = position.height;
-		//labelStyle.stretchWidth = true;
-		//labelStyle.stretchHeight = true;
-		
-		Color oldColor = GUI.color;
-		GUI.color = color;
-		GUI.Label(position, content);
-		GUI.color = oldColor;
-	}
-
 	public void drawBox(Rect position, Color color, Texture2D texture) {
 		GUIStyle boxStyle = new GUIStyle();
 		boxStyle.fixedWidth = position.width;
 		boxStyle.fixedHeight = position.height;
 		boxStyle.stretchWidth = true;
 		boxStyle.stretchHeight = true;
-		//boxStyle.border( new Box(0,0,0,0));
 
 		Color oldColor = GUI.color;
 		Color oldContentColor = GUI.contentColor;
@@ -230,21 +320,30 @@ public class DialogueMessage : MonoBehaviour {
 		
 	}
 
-	public void showMessage(bool dialogueAtTop, bool avatarLeft, string name = "", string message, Texture2D backgroundTexture){
+	public void showMessage(bool dialogueAtTop, bool avatarLeft, string message, Texture2D backgroundTexture, string name = ""){
+
+		avatarBoxEnabled = false;
+		avatarBoxRight = !avatarLeft;
+		boxTop = dialogueAtTop;
+		boxTexture = backgroundTexture;
+		currentMessage = message;
+		currentName = name;
+
 		if(name == ""){
 			nameBoxEnabled = false;
 		} else {
 			nameBoxEnabled = true;
 		}
-		avatarBoxEnabled = false;
-		avatarBoxRight = !avatarLeft;
-		boxTop = dialogueAtTop;
-		boxTexture = backgroundTexture;
+		defineNameBoxPosition();
+		defineDialogueBoxPosition();
+		defineMessageBoxPosition();
 	}
 	
-	public void showMessage(bool dialogueAtTop, bool avatarLeft, string name = "", string message, Texture2D backgroundTexture, Texture2D avatarTexture, int avatarPadding = 20){
+	public void showMessage(bool dialogueAtTop, bool avatarLeft, string message, Texture2D backgroundTexture, Texture2D avatarTexture, int avatarPadding = 20, string name = ""){
 		if(name == ""){
 			nameBoxEnabled = false;
+		} else {
+			nameBoxEnabled = true;
 		}
 		avatarBoxEnabled = true;
 		avatarBoxVerticalPadding = avatarPadding;
@@ -253,31 +352,30 @@ public class DialogueMessage : MonoBehaviour {
 		boxTop = dialogueAtTop;
 		boxTexture = backgroundTexture;
 		avatarBoxTexture = avatarTexture;
-	}
+		currentMessage = message;
+		currentName = name;
 
-	public void showDemoDialogue(){
-		//GUI.BeginGroup(new Rect());
-		//GUI.EndGroup();
+		defineDialogueBoxPosition();
+		defineAvatarBoxPosition();
+		defineNameBoxPosition();
+		defineMessageBoxPosition();
 	}
 
 	public void onNextButton(){
-		if(currentSentence < conversation.Count-1){
-			currentSentence++;
-		} else {
+		if(!getNextMessage()){
 			conversationFinished();
 		}
 	}
 
 	public void onSkipButton(){
-		if(currentSentence < conversation.Count-1){
-			skipConversation();
-		} else {
+		skipConversation();
+		if(!getNextMessage()){
 			conversationFinished();
 		}
 	}
 
 	public void resetConversation(){
-		currentSentence = 0;
+		currentSentence = -1;
 	}
 
 	public void skipConversation(){
@@ -285,6 +383,7 @@ public class DialogueMessage : MonoBehaviour {
 	}
 
 	public void conversationFinished(){
+		activeMessage = false;
 		resetConversation();
 	}
 }

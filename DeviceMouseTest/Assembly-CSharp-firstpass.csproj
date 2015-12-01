@@ -45,6 +45,7 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Plugins\SimpleJSON.cs" />
      <Compile Include="Assets\Plugins\VRPNWrapper\Extras\VRPNDeviceConfig.cs" />
      <Compile Include="Assets\Plugins\VRPNWrapper\Extras\VRPNTrackerCalibrate.cs" />
      <Compile Include="Assets\Plugins\VRPNWrapper\ToConnect\Plugins.cs" />
@@ -65,6 +66,7 @@
      <Compile Include="Assets\Plugins\VRPNWrapper\ToSave\VRPNAnalogSave.cs" />
      <Compile Include="Assets\Plugins\VRPNWrapper\ToSave\VRPNButtonSave.cs" />
      <Compile Include="Assets\Plugins\VRPNWrapper\ToSave\VRPNTrackerSave.cs" />
+     <None Include="Assets\SampleScript.txt" />
      <None Include="Assets\VRPNFiles\DoNotDelete.txt" />
      <None Include="Assets\Resources\vrpn.cfg.txt" />
  <Reference Include="UnityEngine.UI">

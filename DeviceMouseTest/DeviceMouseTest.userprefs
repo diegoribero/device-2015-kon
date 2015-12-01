@@ -1,8 +1,9 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/DialogueMessage.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/SampleScript.txt">
     <Files>
-      <File FileName="Assets/Scripts/DialogueMessage.cs" Line="48" Column="17" />
+      <File FileName="Assets/Scripts/DialogueMessage.cs" Line="77" Column="23" />
+      <File FileName="Assets/SampleScript.txt" Line="5" Column="66" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
