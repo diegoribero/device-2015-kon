@@ -16,6 +16,7 @@ public class ExcavatorScript : MonoBehaviour {
 	private float bucketAcceleration = 0;
 	private float unionAcceleration = 0;
 	private float power = 200;
+	private float extraPower = 200;
 
 	public bool useLimits = false;
 
@@ -31,7 +32,32 @@ public class ExcavatorScript : MonoBehaviour {
 	JointLimits bucketLimits;
 	JointLimits unionLimits;
 
+	public GameObject excavator;
 
+
+	float xspeep = 0f;
+	float power2 = 0.001f;
+	float friction = 0.95f;
+	bool right = false;
+	bool left = false;
+	public float fuel = 2;
+
+	void FixedUpdate () {
+		
+		
+		if(right){
+			xspeep += power2;
+			fuel -= power2;
+		}
+		if(left){
+			xspeep -= power2;
+			fuel -= power2;
+		}
+		
+		
+	}
+	
+	
 	// Use this for initialization
 	void Start () {
 		baseJoint.useMotor = true;
@@ -39,7 +65,7 @@ public class ExcavatorScript : MonoBehaviour {
 		bucketJoint.useMotor = true;
 		unionJoint.useMotor = true;
 		baseMotor = baseJoint.motor;
-		baseMotor.force = 100;
+		baseMotor.force = 400;
 		armMotor = armJoint.motor;
 		armMotor.force = 100;
 		bucketMotor = bucketJoint.motor;
@@ -62,6 +88,37 @@ public class ExcavatorScript : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
+
+
+
+		if(Input.GetKeyDown("W")){
+			right = true;
+		}
+		if(Input.GetKeyUp("W")){
+			right = false;
+		}
+		if(Input.GetKeyDown("S")){
+			left = true;
+		}
+		if(Input.GetKeyUp("S")){
+			left = false;
+		}
+		
+		if(fuel < 0){
+			xspeep = 0;
+		}
+		
+		xspeep *= friction;
+		excavator.transform.Translate(Vector3.right * -xspeep);
+
+
+		if (Input.GetKey(KeyCode.D))
+			excavator.transform.Rotate(0, 1f, 0);
+		if (Input.GetKey(KeyCode.A))
+			excavator.transform.Rotate(0, -1f, 0);
+		
+		
+		
 		if(Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.DownArrow)){
 			//baseJoint.useLimits = false;
 			baseLimits.min = baseLimitsMin;
@@ -75,29 +132,89 @@ public class ExcavatorScript : MonoBehaviour {
 			}
 		}
 
-		if(Input.GetKey(KeyCode.R)){
+		////////// Arm //////////
+
+		if(Input.GetMouseButton(0)){
 			armAcceleration = 1;
 		}
 
-		if(Input.GetKey(KeyCode.F)){
+		if(Input.GetMouseButton(1)){
 			armAcceleration = -1;
 		}
 
-		if(Input.GetKey(KeyCode.R) || Input.GetKey(KeyCode.F)){
+		if(Input.GetMouseButton(0) || Input.GetMouseButton(1)){
 			//armJoint.useLimits = false;
 			armLimits.min = armLimitsMin;
 			armLimits.max = armLimitsMax;
 			if(useLimits) {
 				armJoint.limits = armLimits;
 			}
-		} else if(Input.GetKeyUp(KeyCode.R) || Input.GetKeyUp(KeyCode.F)){
+		} else if(Input.GetMouseButtonUp(0) || Input.GetMouseButtonUp(1)){
 			armAcceleration = 0;
 			if(useLimits) {
 				setLimits(armJoint, armLimits);
 			}
 		}
+		////////////////////////////
 
 
+
+		////////// Base //////////
+		if(Input.GetAxis("Mouse ScrollWheel") > 0){
+			baseAcceleration = 1;
+		} else if(Input.GetAxis("Mouse ScrollWheel") < 0){
+			baseAcceleration = -1;
+		} else {
+			baseAcceleration = 0;
+		}
+
+
+		
+		/*if(Input.GetKeyUp(KeyCode.Q) || Input.GetKeyUp(KeyCode.E)){
+			baseAcceleration = 0;
+			if(useLimits) {
+				setLimits(baseJoint, baseLimits);
+			}
+		}*/
+		///////////////////////////
+
+		/*
+		if(Input.GetKey(KeyCode.W)){
+			Vector3 position = excavator.transform.position;
+			position.x++;
+			position.z++;
+			excavator.transform.position = position;
+		}
+
+		if(Input.GetKey(KeyCode.S)){
+			Vector3 position = excavator.transform.position;
+			position.x--;
+			position.z--;
+			excavator.transform.position = position;
+		}*/
+	
+
+		////////// Union //////////
+		if(Input.GetKey(KeyCode.Q)){
+			unionAcceleration = -1;
+		}
+
+		if(Input.GetKey(KeyCode.E)){
+			unionAcceleration = 1;
+		}
+
+		if(Input.GetKeyUp(KeyCode.Q) || Input.GetKeyUp(KeyCode.E)){
+			unionAcceleration = 0;
+			if(useLimits) {
+				setLimits(unionJoint, unionLimits);
+			}
+		}
+		///////////////////////////
+
+
+		////////// Bucket //////////
+		bucketAcceleration = Input.GetAxis("Mouse Y");
+		/*
 		if(Input.GetKey(KeyCode.T)){
 			bucketAcceleration = 1;
 		}
@@ -120,8 +237,10 @@ public class ExcavatorScript : MonoBehaviour {
 				setLimits(bucketJoint, bucketLimits);
 			}
 		}
+		*/
+		//////////////////////////
 
-		baseAcceleration = Input.GetAxis("Vertical");
+		//baseAcceleration = Input.GetAxis("Vertical");
 		baseMotor.targetVelocity = power * baseAcceleration;
 		baseJoint.motor = baseMotor;
 			
@@ -131,7 +250,7 @@ public class ExcavatorScript : MonoBehaviour {
 		bucketMotor.targetVelocity = power * bucketAcceleration;
 		bucketJoint.motor = bucketMotor;
 
-		unionAcceleration = Input.GetAxis("Horizontal");
+		//unionAcceleration = Input.GetAxis("Horizontal");
 		unionMotor.targetVelocity = power * unionAcceleration;
 		unionJoint.motor = unionMotor;
 		/*

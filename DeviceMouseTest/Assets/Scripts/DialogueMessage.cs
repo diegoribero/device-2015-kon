@@ -231,7 +231,7 @@ public class DialogueMessage : MonoBehaviour {
 
 
 
-		//conversation.Add("Who are you?");
+		//conversation.Add("Who are you?");	
 		//conversation.Add("Where did you find it?");
 		//conversation.Add("I must have it!");
 		//conversation.Add("How much!?");
@@ -242,7 +242,7 @@ public class DialogueMessage : MonoBehaviour {
 	void Update () {
 		if(Input.GetMouseButtonDown(0)){ //Next message || end conversation
 			if(!activeMessage){
-				if(loadConversationFromFile("Assets/SampleScript.txt")){
+				if(loadConversationFromFile("Assets/Resources/SampleScript.txt")){
 					onNextButton();
 					activeMessage = true;
 				}
