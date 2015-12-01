@@ -1,9 +1,9 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets/ExcavatorScript.cs">
     <Files>
       <File FileName="Assets/Scripts/DialogueMessage.cs" Line="234" Column="39" />
-      <File FileName="Assets/ExcavatorScript.cs" Line="119" Column="41" />
+      <File FileName="Assets/ExcavatorScript.cs" Line="95" Column="9" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">

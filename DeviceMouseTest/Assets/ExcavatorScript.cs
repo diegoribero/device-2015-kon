@@ -3,6 +3,11 @@ using System.Collections;
 
 public class ExcavatorScript : MonoBehaviour {
 
+
+	public AudioClip idleSound;
+	public AudioClip movingSound;
+
+
 	public HingeJoint bucketJoint;
 	public HingeJoint armJoint;
 	public HingeJoint baseJoint;
