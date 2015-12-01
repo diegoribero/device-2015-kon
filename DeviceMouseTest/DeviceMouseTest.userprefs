@@ -1,11 +1,19 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\ExcavatorTracker.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/ExcavatorScript.cs">
     <Files>
-      <File FileName="Assets\ExcavatorScript.cs" Line="49" Column="3" />
-      <File FileName="Assets\Scripts\PruebaTracker.cs" Line="1" Column="1" />
-      <File FileName="Assets\ExcavatorTracker.cs" Line="160" Column="76" />
+      <File FileName="Assets/Scripts/DialogueMessage.cs" Line="234" Column="39" />
+      <File FileName="Assets/ExcavatorScript.cs" Line="119" Column="41" />
     </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State expanded="True">
+          <Node name="Assembly-CSharp" expanded="True">
+            <Node name="ExcavatorScript.cs" selected="True" />
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />

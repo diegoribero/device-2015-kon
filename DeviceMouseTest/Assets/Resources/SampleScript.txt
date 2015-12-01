@@ -1,0 +1,6 @@
+{"avatar":0, "name":"Viktor", "message":"Este es el primer mensaje que deberiamos ver"}
+{"avatar":0, "name":"Viktor", "message":"Pero este mensaje estara mas arriba que el anterior", "top":true}
+{"avatar":0, "name":"Viktor", "message":"Ahora se vera desde la derecha", "top":true, "left":false}
+{"avatar":0, "name":"Viktor", "message":"Mejor me voy antes de que se pongan complicadas las cosas", "top":true, "left":true}
+{"message":"Asi Viktor decidio retirarse y no molestar a nadie :)"}
+{"avatar":0, "message":"Eso es lo que ellos creen! >:]"}
