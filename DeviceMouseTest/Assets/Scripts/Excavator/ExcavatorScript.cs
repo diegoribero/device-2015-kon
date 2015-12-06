@@ -3,11 +3,6 @@ using System.Collections;
 
 public class ExcavatorScript : MonoBehaviour {
 	
-	
-	public AudioClip idleSound;
-	public AudioClip movingSound;
-	
-	
 	public HingeJoint bucketJoint;
 	public HingeJoint armJoint;
 	public HingeJoint baseJoint;
@@ -149,11 +144,11 @@ public class ExcavatorScript : MonoBehaviour {
 		
 		
 		////////// Union //////////
-		if(Input.GetKey(KeyCode.Q)){
+		if(Input.GetKey(KeyCode.E)){
 			unionAcceleration = -1;
 		}
 		
-		if(Input.GetKey(KeyCode.E)){
+		if(Input.GetKey(KeyCode.Q)){
 			unionAcceleration = 1;
 		}
 		
