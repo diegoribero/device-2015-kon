@@ -9,6 +9,7 @@ public class ExcavatorMovement : MonoBehaviour
 	public AudioClip m_EngineIdling;            // Audio to play when the tank isn't moving.
 	public AudioClip m_EngineDriving;           // Audio to play when the tank is moving.
 	public float m_PitchRange = 0.2f;           // The amount by which the pitch of the engine noises can vary.
+  public Rigidbody baseCabinRiginbody;
 
 	
 	private string m_MovementAxisName;          // The name of the input axis for moving forward and back.
@@ -97,6 +98,11 @@ public class ExcavatorMovement : MonoBehaviour
 		// Adjust the rigidbodies position and orientation in FixedUpdate.
 		Move ();
 		Turn ();
+    /*if(m_TurnInputValue != 0) {
+      baseCabinRiginbody.isKinematic = true;
+    } else {
+      baseCabinRiginbody.isKinematic = false;
+    }*/
 	}
 	
 	
