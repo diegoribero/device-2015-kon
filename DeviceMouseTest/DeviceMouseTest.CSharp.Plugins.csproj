@@ -91,8 +91,11 @@
     <Compile Include="Assets\Plugins\VRPNWrapper\ToSave\VRPNTrackerSave.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\Materials\Translucid.shader" />
     <None Include="Assets\Resources\SampleScript.txt" />
     <None Include="Assets\Resources\vrpn.cfg.txt" />
+    <None Include="Assets\UI Pack\Fonts\Jupiter\LICENSE.txt" />
+    <None Include="Assets\UI Pack\Materials\UI-Default-No-Alpha.shader" />
     <None Include="Assets\VRPNFiles\DoNotDelete.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
