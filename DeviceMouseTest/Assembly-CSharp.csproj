@@ -47,6 +47,7 @@
   <ItemGroup>
      <Compile Include="Assets\Materials\Level1Manager.cs" />
      <Compile Include="Assets\Scripts\Camera\LookCamera.cs" />
+     <Compile Include="Assets\Scripts\DialogueManager.cs" />
      <Compile Include="Assets\Scripts\DialogueMessage.cs" />
      <Compile Include="Assets\Scripts\Excavator\ExcavatorMovement.cs" />
      <Compile Include="Assets\Scripts\Excavator\ExcavatorScript.cs" />
