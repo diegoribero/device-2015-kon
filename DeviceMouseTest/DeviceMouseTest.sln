@@ -1,11 +1,11 @@
-﻿
-Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2015
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeviceMouseTest.CSharp.Plugins", "DeviceMouseTest.CSharp.Plugins.csproj", "{1B2C4E37-7930-4686-805C-C6C000E0088E}"
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2008
+
+Project("{2001D962-67CE-E576-A19A-E98D82A9DD58}") = "DeviceMouseTest", "Assembly-CSharp-firstpass.csproj", "{7AF3CE9B-2468-09B4-733C-EA37E9998A28}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeviceMouseTest.CSharp", "DeviceMouseTest.CSharp.csproj", "{332C4815-8D1C-EAD7-A709-4E3D5D467D91}"
+Project("{2001D962-67CE-E576-A19A-E98D82A9DD58}") = "DeviceMouseTest", "Assembly-CSharp.csproj", "{317CF7FE-4779-31FF-352D-C65041217E2E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeviceMouseTest.CSharp.Editor", "DeviceMouseTest.CSharp.Editor.csproj", "{941BCEAA-83CA-0B32-D872-36B0A203AB39}"
+Project("{2001D962-67CE-E576-A19A-E98D82A9DD58}") = "DeviceMouseTest", "Assembly-CSharp-Editor.csproj", "{B2B7B393-5A3A-4F12-EAA7-54C071B2FE21}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,20 +13,40 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{1B2C4E37-7930-4686-805C-C6C000E0088E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1B2C4E37-7930-4686-805C-C6C000E0088E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1B2C4E37-7930-4686-805C-C6C000E0088E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1B2C4E37-7930-4686-805C-C6C000E0088E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{332C4815-8D1C-EAD7-A709-4E3D5D467D91}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{332C4815-8D1C-EAD7-A709-4E3D5D467D91}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{332C4815-8D1C-EAD7-A709-4E3D5D467D91}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{332C4815-8D1C-EAD7-A709-4E3D5D467D91}.Release|Any CPU.Build.0 = Release|Any CPU
-		{941BCEAA-83CA-0B32-D872-36B0A203AB39}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{941BCEAA-83CA-0B32-D872-36B0A203AB39}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{941BCEAA-83CA-0B32-D872-36B0A203AB39}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{941BCEAA-83CA-0B32-D872-36B0A203AB39}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7AF3CE9B-2468-09B4-733C-EA37E9998A28}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7AF3CE9B-2468-09B4-733C-EA37E9998A28}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7AF3CE9B-2468-09B4-733C-EA37E9998A28}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7AF3CE9B-2468-09B4-733C-EA37E9998A28}.Release|Any CPU.Build.0 = Release|Any CPU
+		{317CF7FE-4779-31FF-352D-C65041217E2E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{317CF7FE-4779-31FF-352D-C65041217E2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{317CF7FE-4779-31FF-352D-C65041217E2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{317CF7FE-4779-31FF-352D-C65041217E2E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B2B7B393-5A3A-4F12-EAA7-54C071B2FE21}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2B7B393-5A3A-4F12-EAA7-54C071B2FE21}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2B7B393-5A3A-4F12-EAA7-54C071B2FE21}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2B7B393-5A3A-4F12-EAA7-54C071B2FE21}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
+																																																																																																				GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = Assembly-CSharp.csproj
+		Policies = $0
+		$0.TextStylePolicy = $1
+		$1.inheritsSet = null
+		$1.scope = text/x-csharp
+		$0.CSharpFormattingPolicy = $2
+		$2.inheritsSet = Mono
+		$2.inheritsScope = text/x-csharp
+		$2.scope = text/x-csharp
+		$0.TextStylePolicy = $3
+		$3.FileWidth = 120
+		$3.TabWidth = 4
+		$3.IndentWidth = 4
+		$3.EolMarker = Unix
+		$3.inheritsSet = Mono
+		$3.inheritsScope = text/plain
+		$3.scope = text/plain
+	EndGlobalSection
+
 EndGlobal
