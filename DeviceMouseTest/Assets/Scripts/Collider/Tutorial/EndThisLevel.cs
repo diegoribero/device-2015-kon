@@ -15,5 +15,6 @@ public class EndThisLevel : MonoBehaviour {
 
 	void endMethod(){
 		Debug.Log("Level has ended...");
+		Application.LoadLevel(1);
 	}
 }

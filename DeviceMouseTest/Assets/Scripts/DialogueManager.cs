@@ -25,11 +25,13 @@ public class DialogueManager : MonoBehaviour {
 	float previousNextButtonPressed = 0;
 
 	void startLevel1(){
-		startDialogueFromFile("Assets/Resources/Level1Start.txt");
+		//startDialogueFromFile("Assets/Resources/Level1Start.txt");
+		startDialogueFromVar(1);
 	}
 
 	void endLevel1(){
-		startDialogueFromFile("Assets/Resources/Level1End.txt");
+		//startDialogueFromFile("Assets/Resources/Level1End.txt");
+		startDialogueFromVar(2);
 	}
 
 	void invokeEndMethod(){
@@ -51,6 +53,37 @@ public class DialogueManager : MonoBehaviour {
 
 		if(previousNextButtonPressed > 0 && nextButtonPressed <= 0){
 			onNextButton();
+		}
+	}
+
+
+	public void startDialogueFromVar(int var){
+		
+		if(dialogueSystem != null){
+			if(!activeDialogue){
+				Debug.Log("Calling new dialog!");
+				jsonList.Clear();
+				if(var == 1){
+					processJSONLine("{\"avatar\":0, \"name\":\"Viejo Maestro\", \"message\":\"Este es nuestro sitio de entrenamiento, empezaremos con algo simple\"}");
+					processJSONLine("{\"avatar\":0, \"name\":\"Viejo Maestro\", \"message\":\"Primero deberas ubicar la excavadora en la zona verde\"}");
+					processJSONLine("{\"avatar\":0, \"name\":\"Viejo Maestro\", \"message\":\"Luego deberas tumbar el bloque que se encuentra en el tejado\"}");
+					processJSONLine("{\"avatar\":0, \"name\":\"Viejo Maestro\", \"message\":\"Vamos a ver que tan bien se te da esto de manejar maquinaria pesada...\"}");
+
+				} else if (var == 2){
+					processJSONLine("{\"avatar\":0, \"name\":\"Viejo Maestro\", \"message\":\"Muy bien!\"}");
+					processJSONLine("{\"avatar\":0, \"name\":\"Viejo Maestro\", \"message\":\"Parece que tienes lo que se necesita\"}");
+					processJSONLine("{\"avatar\":0, \"name\":\"Viejo Maestro\", \"message\":\"Ya veremos como te va en nuestro siguiente entrenamiento...\"}");
+				}
+
+				Debug.Log("Successfully loaded!");
+				onNextButton();
+				activeDialogue = true;
+				dialogueSystem.SetActive(true);
+			} else {
+				Debug.Log("Another dialogue is already active!!!");
+			}
+		} else {
+			Debug.Log("No dialogue system linked!!!");
 		}
 	}
 
