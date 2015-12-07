@@ -46,10 +46,13 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Materials\Level1Manager.cs" />
+     <Compile Include="Assets\Scripts\Camera\LookCamera.cs" />
      <Compile Include="Assets\Scripts\DialogueMessage.cs" />
      <Compile Include="Assets\Scripts\Excavator\ExcavatorMovement.cs" />
      <Compile Include="Assets\Scripts\Excavator\ExcavatorScript.cs" />
      <Compile Include="Assets\Scripts\Excavator\ExcavatorTracker.cs" />
+     <Compile Include="Assets\Scripts\Excavator\MoveVehicle.cs" />
+     <Compile Include="Assets\Scripts\General\Tags.cs" />
      <Compile Include="Assets\Scripts\Samples\MouseScriptTest.cs" />
      <Compile Include="Assets\Scripts\Samples\PruebaMouse.cs" />
      <Compile Include="Assets\Scripts\Samples\PruebaMouse3D.cs" />

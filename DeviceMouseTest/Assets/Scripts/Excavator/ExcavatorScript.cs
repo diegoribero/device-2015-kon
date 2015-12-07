@@ -15,11 +15,10 @@ public class ExcavatorScript : MonoBehaviour {
 	private float armAcceleration = 0;
 	private float bucketAcceleration = 0;
 	private float unionAcceleration = 0;
-	private float power = 200;
-	private float extraPower = 200;
+	private float power = 200;	
 	
-	public bool useLimits = false;
-	
+	/*
+	public bool enableLimits = false;
 	private float baseLimitsMin = -135;
 	private float baseLimitsMax = 45;
 	private float armLimitsMin = -60;
@@ -27,11 +26,16 @@ public class ExcavatorScript : MonoBehaviour {
 	private float bucketLimitsMin = -60;
 	private float bucketLimitsMax = 65;
 	
-	JointLimits baseLimits;
-	JointLimits armLimits;
-	JointLimits bucketLimits;
-	JointLimits unionLimits;
-	
+	private JointLimits baseLimits;
+	private JointLimits armLimits;
+	private JointLimits bucketLimits;
+	private JointLimits unionLimits;
+	*/
+
+	private string m_ExcavatorRotationAxisName;
+	private string m_BaseRotationAxisName;
+	private string m_ArmRotationAxisName;
+	private string m_BucketRotationAxisName;
 	
 	
 	// Use this for initialization
@@ -48,11 +52,17 @@ public class ExcavatorScript : MonoBehaviour {
 		bucketMotor.force = 100;
 		unionMotor = unionJoint.motor;
 		unionMotor.force = 200;
-		if(useLimits) {
+
+		m_ExcavatorRotationAxisName = "Rotate Excavator";
+		m_BaseRotationAxisName = "Rotate Base";
+		m_ArmRotationAxisName = "Rotate Arm";
+		m_BucketRotationAxisName = "Rotate Bucket";
+
+		/*if(enableLimits) {
 			setLimits(baseJoint, baseLimits);
 			setLimits(armJoint, armLimits);
 			setLimits(bucketJoint, bucketLimits);
-		}
+		}*/
 	}
 	
 	void setLimits(HingeJoint joint, JointLimits limits){
@@ -61,89 +71,11 @@ public class ExcavatorScript : MonoBehaviour {
 		joint.limits = limits;
 		joint.useLimits = true;
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-		
-		
-		
-		if(Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.DownArrow)){
-			//baseJoint.useLimits = false;
-			baseLimits.min = baseLimitsMin;
-			baseLimits.max = baseLimitsMax;
-			if(useLimits) {
-				baseJoint.limits = baseLimits;
-			}
-		} else if(Input.GetKeyUp(KeyCode.UpArrow) || Input.GetKeyUp(KeyCode.DownArrow)){
-			if(useLimits) {
-				setLimits(baseJoint, baseLimits);
-			}
-		}
-		
-		////////// Arm //////////
-		
-		if(Input.GetMouseButton(0)){
-			armAcceleration = 1;
-		}
-		
-		if(Input.GetMouseButton(1)){
-			armAcceleration = -1;
-		}
-		
-		if(Input.GetMouseButton(0) || Input.GetMouseButton(1)){
-			//armJoint.useLimits = false;
-			armLimits.min = armLimitsMin;
-			armLimits.max = armLimitsMax;
-			if(useLimits) {
-				armJoint.limits = armLimits;
-			}
-		} else if(Input.GetMouseButtonUp(0) || Input.GetMouseButtonUp(1)){
-			armAcceleration = 0;
-			if(useLimits) {
-				setLimits(armJoint, armLimits);
-			}
-		}
-		////////////////////////////
-		
-		
-		
-		////////// Base //////////
-		if(Input.GetAxis("Mouse ScrollWheel") > 0){
-			baseAcceleration = 1;
-		} else if(Input.GetAxis("Mouse ScrollWheel") < 0){
-			baseAcceleration = -1;
-		} else {
-			baseAcceleration = 0;
-		}
-		
-		
-		
-		/*if(Input.GetKeyUp(KeyCode.Q) || Input.GetKeyUp(KeyCode.E)){
-			baseAcceleration = 0;
-			if(useLimits) {
-				setLimits(baseJoint, baseLimits);
-			}
-		}*/
-		///////////////////////////
-		
-		/*
-		if(Input.GetKey(KeyCode.W)){
-			Vector3 position = excavator.transform.position;
-			position.x++;
-			position.z++;
-			excavator.transform.position = position;
-		}
 
-		if(Input.GetKey(KeyCode.S)){
-			Vector3 position = excavator.transform.position;
-			position.x--;
-			position.z--;
-			excavator.transform.position = position;
-		}*/
-		
-		
-		////////// Union //////////
+	private void setExcavatorRotation(){
+		unionAcceleration = Input.GetAxis (m_ExcavatorRotationAxisName);
+
+		/*
 		if(Input.GetKey(KeyCode.E)){
 			unionAcceleration = -1;
 		}
@@ -154,70 +86,97 @@ public class ExcavatorScript : MonoBehaviour {
 		
 		if(Input.GetKeyUp(KeyCode.Q) || Input.GetKeyUp(KeyCode.E)){
 			unionAcceleration = 0;
-			if(useLimits) {
+			/*if(enableLimits) {
 				setLimits(unionJoint, unionLimits);
-			}
-		}
-		///////////////////////////
-		
-		
-		////////// Bucket //////////
-		bucketAcceleration = Input.GetAxis("Mouse Y");
-		/*
-		if(Input.GetKey(KeyCode.T)){
-			bucketAcceleration = 1;
-		}
-		
-		if(Input.GetKey(KeyCode.G)){
-			bucketAcceleration = -1;
-		}
+			}*/
+		//}
+	}
 
-
-		if(Input.GetKey(KeyCode.T) || Input.GetKey(KeyCode.G)){
-			//bucketJoint.useLimits = false;
-			bucketLimits.min = bucketLimitsMin;
-			bucketLimits.max = bucketLimitsMax;
-			if(useLimits) {
-				bucketJoint.limits = bucketLimits;
-			}
-		} else if(Input.GetKeyUp(KeyCode.T) || Input.GetKeyUp(KeyCode.G)){
-			bucketAcceleration = 0;
-			if(useLimits) {
-				setLimits(bucketJoint, bucketLimits);
-			}
-		}
-		*/
-		//////////////////////////
-		
-		//baseAcceleration = Input.GetAxis("Vertical");
-		baseMotor.targetVelocity = power * baseAcceleration;
-		baseJoint.motor = baseMotor;
-		
-		armMotor.targetVelocity = power * armAcceleration;
-		armJoint.motor = armMotor;
-		
-		bucketMotor.targetVelocity = power * bucketAcceleration;
-		bucketJoint.motor = bucketMotor;
-		
-		//unionAcceleration = Input.GetAxis("Horizontal");
+	private void rotateExcavator(){
 		unionMotor.targetVelocity = power * unionAcceleration;
 		unionJoint.motor = unionMotor;
+	}
+
+	private void setBaseRotation(){
+
+		baseAcceleration = Input.GetAxis(m_BaseRotationAxisName);
+
 		/*
-		if(baseJoint.angle < -135 || baseJoint.angle > 45)
-			baseJoint.GetComponent<Transform>().eulerAngles = new Vector3(0, 0, 0);
+		if(Input.GetAxis("Mouse ScrollWheel") > 0){
+			baseAcceleration = 1;
+		} else if(Input.GetAxis("Mouse ScrollWheel") < 0){
+			baseAcceleration = -1;
+		} else {
+			baseAcceleration = 0;
+		}*/
+	}
 
-		if(armJoint.angle < -60 || armJoint.angle > 60)
-			armJoint.GetComponent<Transform>().eulerAngles = new Vector3(0, 0, 0);
+	private void rotateBase(){
+		baseMotor.targetVelocity = power * baseAcceleration;
+		baseJoint.motor = baseMotor;
+	}
 
-		if(bucketJoint.angle < -60 || bucketJoint.angle > 65)
-			bucketJoint.GetComponent<Transform>().eulerAngles = new Vector3(0, 0, 0);
-	*/
+	private void setArmRotation(){
+
+		armAcceleration = Input.GetAxis(m_ArmRotationAxisName);
+		/*
+		if(Input.GetMouseButton(0)){
+			armAcceleration = 1;
+		}
+		
+		if(Input.GetMouseButton(1)){
+			armAcceleration = -1;
+		}
+		
+		if(Input.GetMouseButton(0) || Input.GetMouseButton(1)){
+			/*armJoint.useLimits = false;
+			armLimits.min = armLimitsMin;
+			armLimits.max = armLimitsMax;
+			if(enableLimits) {
+				armJoint.limits = armLimits;
+			}*/
+		/*
+		} else if(Input.GetMouseButtonUp(0) || Input.GetMouseButtonUp(1)){
+			armAcceleration = 0;
+			/*if(enableLimits) {
+				setLimits(armJoint, armLimits);
+			}*/
+		//}
+	}
+
+	private void rotateArm(){
+		armMotor.targetVelocity = power * armAcceleration;
+		armJoint.motor = armMotor;
+	}
+
+
+	private void setBucketRotation(){
+		bucketAcceleration = Input.GetAxis(m_BucketRotationAxisName);
+	}
+
+	private void rotateBucket(){
+		bucketMotor.targetVelocity = power * bucketAcceleration;
+		bucketJoint.motor = bucketMotor;
+	}
+
+
+	void Update () {
+	
+		setArmRotation();
+		rotateArm();
+
+		setBaseRotation();
+		rotateBase();
+
+		setExcavatorRotation();
+		rotateExcavator();
+
+		setBucketRotation();
+		rotateBucket ();
+
 		//Base 45 -135
 		//Arm 60 -60
 		//Bucket 65 -60
-		
-		//Debug.Log("Force: " + baseMotor.force + " Pow: " + power + " Acc: " + baseAcceleration);
-		//Debug.Log("Base angle: " + baseJoint.angle + " Arm angle: " + armJoint.angle + " Bucket angle: " + bucketJoint.angle);
 	}
 	
 }

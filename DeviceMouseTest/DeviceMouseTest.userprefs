@@ -1,28 +1,14 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Temp/Compiled-Translucid.shader">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Excavator/ExcavatorMovement.cs">
     <Files>
-      <File FileName="Assets/Scripts/UI/MenuPrincipal/LoadOnClick.cs" Line="10" Column="3" />
-      <File FileName="Assets/Scripts/Excavator/ExcavatorScript.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/UI/MenuPrincipal/DontDestroy.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/UI/MenuPrincipal/ChangeMusic.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/UI/MenuPrincipal/ClickToLoadAsync.cs" Line="12" Column="2" />
+      <File FileName="Assets/Scripts/Excavator/ExcavatorScript.cs" Line="224" Column="1" />
       <File FileName="Temp/Compiled-Translucid.shader" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Excavator/ExcavatorMovement.cs" Line="104" Column="4" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
-        <State expanded="True">
-          <Node name="Assembly-CSharp" expanded="True">
-            <Node name="Scripts" expanded="True">
-              <Node name="Excavator" expanded="True" />
-              <Node name="UI" expanded="True">
-                <Node name="MenuPrincipal" expanded="True">
-                  <Node name="ClickToLoadAsync.cs" selected="True" />
-                </Node>
-              </Node>
-            </Node>
-          </Node>
-        </State>
+        <State expanded="True" selected="True" />
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>

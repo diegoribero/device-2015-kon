@@ -9,6 +9,7 @@ public class ExcavatorMovement : MonoBehaviour
 	public AudioClip m_EngineIdling;            // Audio to play when the excavator isn't moving.
 	public AudioClip m_EngineDriving;           // Audio to play when the excavator is moving.
 	public float m_PitchRange = 0.2f;           // The amount by which the pitch of the engine noises can vary.
+  public Rigidbody baseCabinRiginbody;
 
 	
 	private string m_MovementAxisName;          // The name of the input axis for moving forward and back.
@@ -41,8 +42,8 @@ public class ExcavatorMovement : MonoBehaviour
 	
 	private void Start ()
 	{
-		m_MovementAxisName = "Vertical" + m_PlayerNumber;
-		m_TurnAxisName = "Horizontal" + m_PlayerNumber;
+		m_MovementAxisName = "Vertical";// + m_PlayerNumber;
+		m_TurnAxisName = "Horizontal";// + m_PlayerNumber;
 
 		m_OriginalPitch = m_MovementAudio.pitch; // Store the original pitch of the audio source.
 	}
@@ -90,9 +91,19 @@ public class ExcavatorMovement : MonoBehaviour
 		// Adjust the rigidbodies position and orientation in FixedUpdate.
 		Move ();
 		Turn ();
+		LimitMovement();
+    
 	}
 	
-	
+
+	private void LimitMovement(){
+		if (Mathf.Abs (m_MovementInputValue) < 0.1f && Mathf.Abs (m_TurnInputValue) < 0.1f){
+			m_Rigidbody.isKinematic = true;
+		} else {
+			m_Rigidbody.isKinematic = false;
+		}
+	}
+
 	private void Move ()
 	{
 		Vector3 movement = transform.forward * m_MovementInputValue * m_Speed * Time.deltaTime; // Create a vector in the direction the excavator is facing
@@ -103,9 +114,7 @@ public class ExcavatorMovement : MonoBehaviour
 	private void Turn ()
 	{
 		float turn = m_TurnInputValue * m_TurnSpeed * Time.deltaTime; // Determine the number of degrees to be turned.
-
 		Quaternion turnRotation = Quaternion.Euler (0f, turn, 0f); // Make this into a rotation in the y axis.
-
 		m_Rigidbody.MoveRotation (m_Rigidbody.rotation * turnRotation); // Apply this rotation to the rigidbody's rotation.
 	}
 }
