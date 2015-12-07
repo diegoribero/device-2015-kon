@@ -60,7 +60,7 @@
      <None Include="Assets\Materials\Translucid.shader" />
      <None Include="Assets\UI Pack\Fonts\Jupiter\LICENSE.txt" />
      <None Include="Assets\UI Pack\Materials\UI-Default-No-Alpha.shader" />
-     <None Include="Assets\Resources\Models\Level1End.txt" />
+     <None Include="Assets\Resources\Level1End.txt" />
      <None Include="Assets\Resources\vrpn.cfg.txt" />
  <Reference Include="UnityEditor.Advertisements">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/Advertisements/Editor/UnityEditor.Advertisements.dll</HintPath>

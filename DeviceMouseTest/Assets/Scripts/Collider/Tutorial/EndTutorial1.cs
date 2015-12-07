@@ -3,6 +3,8 @@ using System.Collections;
 
 public class EndTutorial1 : MonoBehaviour {
 
+	public DialogueManager dialogueManager;
+
   public float waitTime = 2.0f;
 
 	// Use this for initialization
@@ -17,13 +19,19 @@ public class EndTutorial1 : MonoBehaviour {
 
   void OnCollisionEnter(Collision collision) {
     if(collision.gameObject.tag.Equals(Tags.Terrain)) {
-      StartCoroutine(EndLevelTutorial(waitTime));
+		dialogueManager.scriptWithEndMethod = GetComponent<EndThisLevel>();
+		dialogueManager.Invoke("endLevel1", 0f);
+      //StartCoroutine(EndLevelTutorial(waitTime));
     }
   }
 
-  IEnumerator EndLevelTutorial(float timer) {
+	void endMethod(){
+		Debug.Log("This level was finished, waiting the load of the next");
+	}
+
+  /*IEnumerator EndLevelTutorial(float timer) {
     yield return new WaitForSeconds(timer);
     Time.timeScale = 0;
     Debug.Log("This level was finished, waiting the load of the next");
-  }
+  }*/
 }

@@ -17,6 +17,7 @@ public class DialogueManager : MonoBehaviour {
 	public Image dialogueAvatar;
 	public Image viktorAvatar;
 	public Image oldManAvatar;
+	public EndThisLevel scriptWithEndMethod;
 
 	bool activeDialogue = false;
 	int currentSentence = -1;
@@ -29,6 +30,12 @@ public class DialogueManager : MonoBehaviour {
 
 	void endLevel1(){
 		startDialogueFromFile("Assets/Resources/Level1End.txt");
+	}
+
+	void invokeEndMethod(){
+		if(scriptWithEndMethod != null){
+			scriptWithEndMethod.Invoke("endMethod", 0f);
+		}
 	}
 
 
@@ -102,7 +109,7 @@ public class DialogueManager : MonoBehaviour {
 	}
 
 	bool getNextMessage(){
-		Debug.Log("JSON count = " + jsonList.Count);
+		//Debug.Log("JSON count = " + jsonList.Count);
 		currentSentence++;
 		if(currentSentence+1 > jsonList.Count){ //Finished the message script
 			jsonList.Clear();
@@ -170,6 +177,7 @@ public class DialogueManager : MonoBehaviour {
 	public void conversationFinished(){
 		activeDialogue = false;
 		dialogueSystem.SetActive(false);
+		invokeEndMethod();
 		//resetConversation();
 	}
 }
