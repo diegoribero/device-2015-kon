@@ -1,0 +1,3 @@
+{"avatar":0, "name":"Viejo Maestro", "message":"Muy bien!"}
+{"avatar":0, "name":"Viejo Maestro", "message":"Parece que tienes lo que se necesita"}
+{"avatar":0, "name":"Viejo Maestro", "message":"Ya veremos como te va en nuestro siguiente entrenamiento..."}

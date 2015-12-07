@@ -1,0 +1,4 @@
+{"avatar":0, "name":"Viejo Maestro", "message":"Este es nuestro sitio de entrenamiento, empezaremos con algo simple"}
+{"avatar":0, "name":"Viejo Maestro", "message":"Primero deberas ubicar la excavadora en la zona verde"}
+{"avatar":0, "name":"Viejo Maestro", "message":"Luego deberas tumbar el bloque que se encuentra en el tejado"}
+{"avatar":0, "name":"Viejo Maestro", "message":"Vamos a ver que tan bien se te da esto de manejar maquinaria pesada..."}

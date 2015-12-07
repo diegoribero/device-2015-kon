@@ -67,10 +67,12 @@
      <Compile Include="Assets\Plugins\VRPNWrapper\ToSave\VRPNButtonSave.cs" />
      <Compile Include="Assets\Plugins\VRPNWrapper\ToSave\VRPNTrackerSave.cs" />
      <None Include="Assets\Resources\SampleScript.txt" />
+     <None Include="Assets\Resources\Level1Start.txt" />
      <None Include="Assets\VRPNFiles\DoNotDelete.txt" />
      <None Include="Assets\Materials\Translucid.shader" />
      <None Include="Assets\UI Pack\Fonts\Jupiter\LICENSE.txt" />
      <None Include="Assets\UI Pack\Materials\UI-Default-No-Alpha.shader" />
+     <None Include="Assets\Resources\Models\Level1End.txt" />
      <None Include="Assets\Resources\vrpn.cfg.txt" />
  <Reference Include="UnityEngine.UI">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>

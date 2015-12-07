@@ -15,10 +15,21 @@ public class DialogueManager : MonoBehaviour {
 	public Text dialogueName;
 	public Text dialogueMessage;
 	public Image dialogueAvatar;
+	public Image viktorAvatar;
+	public Image oldManAvatar;
+
 	bool activeDialogue = false;
 	int currentSentence = -1;
 	float nextButtonPressed = 0;
 	float previousNextButtonPressed = 0;
+
+	void startLevel1(){
+		startDialogueFromFile("Assets/Resources/Level1Start.txt");
+	}
+
+	void endLevel1(){
+		startDialogueFromFile("Assets/Resources/Level1End.txt");
+	}
 
 
 	// Use this for initialization

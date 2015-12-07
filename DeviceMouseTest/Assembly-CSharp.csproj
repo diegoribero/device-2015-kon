@@ -47,6 +47,8 @@
   <ItemGroup>
      <Compile Include="Assets\Materials\Level1Manager.cs" />
      <Compile Include="Assets\Scripts\Camera\LookCamera.cs" />
+     <Compile Include="Assets\Scripts\Collider\Tutorial\EnableGift.cs" />
+     <Compile Include="Assets\Scripts\Collider\Tutorial\EndTutorial1.cs" />
      <Compile Include="Assets\Scripts\DialogueManager.cs" />
      <Compile Include="Assets\Scripts\DialogueMessage.cs" />
      <Compile Include="Assets\Scripts\Excavator\ExcavatorMovement.cs" />
@@ -54,6 +56,7 @@
      <Compile Include="Assets\Scripts\Excavator\ExcavatorTracker.cs" />
      <Compile Include="Assets\Scripts\Excavator\MoveVehicle.cs" />
      <Compile Include="Assets\Scripts\General\Tags.cs" />
+     <Compile Include="Assets\Scripts\Level1GameManager.cs" />
      <Compile Include="Assets\Scripts\Samples\MouseScriptTest.cs" />
      <Compile Include="Assets\Scripts\Samples\PruebaMouse.cs" />
      <Compile Include="Assets\Scripts\Samples\PruebaMouse3D.cs" />
@@ -64,10 +67,12 @@
      <Compile Include="Assets\Scripts\UI\MenuPrincipal\LoadOnClick.cs" />
      <Compile Include="Assets\Scripts\UI\MenuPrincipal\MenuPrincipal.cs" />
      <None Include="Assets\Resources\SampleScript.txt" />
+     <None Include="Assets\Resources\Level1Start.txt" />
      <None Include="Assets\VRPNFiles\DoNotDelete.txt" />
      <None Include="Assets\Materials\Translucid.shader" />
      <None Include="Assets\UI Pack\Fonts\Jupiter\LICENSE.txt" />
      <None Include="Assets\UI Pack\Materials\UI-Default-No-Alpha.shader" />
+     <None Include="Assets\Resources\Models\Level1End.txt" />
      <None Include="Assets\Resources\vrpn.cfg.txt" />
  <Reference Include="UnityEngine.UI">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
