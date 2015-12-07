@@ -74,6 +74,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Materials\Level1Manager.cs" />
     <Compile Include="Assets\Scripts\Camera\LookCamera.cs" />
     <Compile Include="Assets\Scripts\Collider\Tutorial\EnableGift.cs" />
     <Compile Include="Assets\Scripts\Collider\Tutorial\EndTutorial1.cs" />
@@ -87,11 +88,18 @@
     <Compile Include="Assets\Scripts\Samples\PruebaMouse.cs" />
     <Compile Include="Assets\Scripts\Samples\PruebaMouse3D.cs" />
     <Compile Include="Assets\Scripts\Samples\PruebaTracker.cs" />
+    <Compile Include="Assets\Scripts\UI\MenuPrincipal\ChangeMusic.cs" />
+    <Compile Include="Assets\Scripts\UI\MenuPrincipal\ClickToLoadAsync.cs" />
+    <Compile Include="Assets\Scripts\UI\MenuPrincipal\DontDestroy.cs" />
+    <Compile Include="Assets\Scripts\UI\MenuPrincipal\LoadOnClick.cs" />
     <Compile Include="Assets\Scripts\UI\MenuPrincipal\MenuPrincipal.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\Materials\Translucid.shader" />
     <None Include="Assets\Resources\SampleScript.txt" />
     <None Include="Assets\Resources\vrpn.cfg.txt" />
+    <None Include="Assets\UI Pack\Fonts\Jupiter\LICENSE.txt" />
+    <None Include="Assets\UI Pack\Materials\UI-Default-No-Alpha.shader" />
     <None Include="Assets\VRPNFiles\DoNotDelete.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
