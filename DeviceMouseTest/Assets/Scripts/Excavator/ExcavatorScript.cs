@@ -15,7 +15,7 @@ public class ExcavatorScript : MonoBehaviour {
 	private float armAcceleration = 0;
 	private float bucketAcceleration = 0;
 	private float unionAcceleration = 0;
-	private float power = 200;	
+	private float power = 200;
 	
 	/*
 	public bool enableLimits = false;

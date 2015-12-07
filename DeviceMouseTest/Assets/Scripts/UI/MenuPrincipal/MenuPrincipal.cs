@@ -16,6 +16,15 @@ public class MenuPrincipal : MonoBehaviour {
     {
 
     }
+
+
+	void Update () {
+			
+		if(Input.GetKey("escape")){
+			Application.Quit();
+		}
+	}
+
     public void Salir()
     {
     #if UNITY_EDITOR
