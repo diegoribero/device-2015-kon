@@ -32,10 +32,10 @@ public class ExcavatorScript : MonoBehaviour {
 	private JointLimits unionLimits;
 	*/
 
-	private string m_ExcavatorRotationAxisName;
-	private string m_BaseRotationAxisName;
-	private string m_ArmRotationAxisName;
-	private string m_BucketRotationAxisName;
+	private string excavatorRotationAxisName;
+	private string baseRotationAxisName;
+	private string armRotationAxisName;
+	private string bucketRotationAxisName;
 	
 	
 	// Use this for initialization
@@ -53,10 +53,10 @@ public class ExcavatorScript : MonoBehaviour {
 		unionMotor = unionJoint.motor;
 		unionMotor.force = 200;
 
-		m_ExcavatorRotationAxisName = "Rotate Excavator";
-		m_BaseRotationAxisName = "Rotate Base";
-		m_ArmRotationAxisName = "Rotate Arm";
-		m_BucketRotationAxisName = "Rotate Bucket";
+		excavatorRotationAxisName = "Rotate Excavator";
+		baseRotationAxisName = "Rotate Base";
+		armRotationAxisName = "Rotate Arm";
+		bucketRotationAxisName = "Rotate Bucket";
 
 		/*if(enableLimits) {
 			setLimits(baseJoint, baseLimits);
@@ -73,7 +73,7 @@ public class ExcavatorScript : MonoBehaviour {
 	}
 
 	private void setExcavatorRotation(){
-		unionAcceleration = Input.GetAxis (m_ExcavatorRotationAxisName);
+		unionAcceleration = Input.GetAxis (excavatorRotationAxisName);
 
 		/*
 		if(Input.GetKey(KeyCode.E)){
@@ -99,7 +99,7 @@ public class ExcavatorScript : MonoBehaviour {
 
 	private void setBaseRotation(){
 
-		baseAcceleration = Input.GetAxis(m_BaseRotationAxisName);
+		baseAcceleration = Input.GetAxis(baseRotationAxisName);
 
 		/*
 		if(Input.GetAxis("Mouse ScrollWheel") > 0){
@@ -118,7 +118,7 @@ public class ExcavatorScript : MonoBehaviour {
 
 	private void setArmRotation(){
 
-		armAcceleration = Input.GetAxis(m_ArmRotationAxisName);
+		armAcceleration = Input.GetAxis(armRotationAxisName);
 		/*
 		if(Input.GetMouseButton(0)){
 			armAcceleration = 1;
@@ -151,7 +151,7 @@ public class ExcavatorScript : MonoBehaviour {
 
 
 	private void setBucketRotation(){
-		bucketAcceleration = Input.GetAxis(m_BucketRotationAxisName);
+		bucketAcceleration = Input.GetAxis(bucketRotationAxisName);
 	}
 
 	private void rotateBucket(){

@@ -19,8 +19,8 @@ public class MoveVehicle : MonoBehaviour {
   void Start () {
     mRigidbody = GetComponent<Rigidbody>();
     // The axes names are based on player number.
-    m_MovementAxisName = "Vertical" + m_PlayerNumber;
-    m_TurnAxisName = "Horizontal" + m_PlayerNumber;
+    m_MovementAxisName = "Vertical";
+    m_TurnAxisName = "Horizontal";
   }
 	
 	// Update is called once per frame
@@ -34,8 +34,16 @@ public class MoveVehicle : MonoBehaviour {
     // Adjust the rigidbodies position and orientation in FixedUpdate.
     Move();
     Turn();
+	LimitMovement();
   }
 
+	private void LimitMovement(){
+		if (Mathf.Abs (vertical) < 0.1f && Mathf.Abs (horizontal) < 0.1f){
+			mRigidbody.isKinematic = true;
+		} else {
+			mRigidbody.isKinematic = false;
+		}
+	}
 
   private void Move() {
     // Create a vector in the direction the tank is facing with a magnitude based on the input, speed and the time between frames.
